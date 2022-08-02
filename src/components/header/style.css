@@ -2,16 +2,20 @@
 	display: block;
 }
 
-.header h1, img, p {
-	margin-bottom: 0;
-	margin-top: 0;
+.headcontent {
+	margin-left: 10px;
 }
 
 .header div {
 	display: flex;
-	position: relative;
-	vertical-align: bottom;
 }
+
+
+.header h1, img, p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 
 .header img, p {
 	max-height: 14px;
@@ -20,6 +24,17 @@
 	margin-left: 5px;
 }
 
-/* .header div img {
-	position: absolute;
-} */
+.header p {
+	margin-bottom: 12px;
+	margin-left: 10px;
+}
+
+.header img {
+	margin-bottom: 9px;
+}
+
+
+.seperator {
+	border-top: 3px solid #bbb;
+	margin-top: 25px;
+}

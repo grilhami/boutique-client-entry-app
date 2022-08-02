@@ -9,7 +9,6 @@ import Profile from '../routes/profile';
 
 const App = () => (
 	<div id="app">
-        <Header />
         <Router>
             <Route path="/" component={Home} />
             <Route path="/profile/" component={Profile} user="me" />
