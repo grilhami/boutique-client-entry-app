@@ -1,13 +1,120 @@
 import { h } from 'preact';
 import style from './style.css';
 import Header from '../../components/header'
+import { TextField } from '@fluentui/react/lib/TextField';
+import { Stack, IStackProps, IStackStyles } from '@fluentui/react/lib/Stack';
+import { DetailsList, SelectionMode, DetailsHeader, IDetailsHeaderStyles, IDetailsHeaderBaseProps, DetailsListLayoutMode, IDetailsHeaderProps } from '@fluentui/react/lib/DetailsList';
+import { SearchBox } from '@fluentui/react/lib/SearchBox';
+import { IRawStyle, IStyle } from '@fluentui/react';
 
-const Home = () => (
-	<div class={style.home}>
-		<Header />
-		<h1>Home</h1>
-		<p>This is the Home component.</p>
-	</div>
-);
+const stackTokens = { childrenGap: 50 };
+const iconProps = { iconName: 'Calendar' };
+const stackStyles: Partial<IStackStyles> = { root: { width: "100%" } };
+const columnProps: Partial<IStackProps> = {
+  tokens: { childrenGap: 15 },
+  styles: { root: { width: "100%" } },
+}
+
+const headerStyle = { 
+	root: {paddingTop: 0}
+}
+
+
+const Home = () => {
+
+	const items = [
+		{
+			key: 1,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum dolor sit amet  consectetur adipiscing elit.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38 / 33; 55; 98",
+			code: 19909
+		},
+		{
+			key: 2,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97;",
+			code: 19909
+		},
+		{
+			key: 3,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97;",
+			code: 19909
+		},
+		{
+			key: 4,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97;",
+			code: 19909
+		},
+		{
+			key: 5,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum dolor sit amet  consectetur.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38",
+			code: 19909
+		},
+		{
+			key: 6,
+			name: "Jeniffer Chen",
+			createdAt: "01/01/2020",
+			address: "Lorem ipsum dolor sit amet  consectetur adipiscing elit.",
+			phoneNum: 123123123,
+			measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38 / 33; 55; 98",
+			code: 19909
+		},
+	]
+
+	const columns = [
+		{ key: 'column1', name: 'Nama', fieldName: 'name', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column2', name: 'Tanggal Aktif', fieldName: 'createdAt', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column3', name: 'Alamat', fieldName: 'address', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column4', name: 'No. Telp', fieldName: 'phoneNum', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column5', name: 'Ukuran', fieldName: 'measurement', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column6', name: 'Kode', fieldName: 'code', minWidth: 100, maxWidth: 200, isResizable: true },
+	  ];
+
+	const onRenderDetailsHeader = (detailsHeaderProps: IDetailsHeaderProps): h.JSX.Element => {
+		detailsHeaderProps.styles = headerStyle;
+		return <DetailsHeader { ...detailsHeaderProps}/>
+	}
+
+	return (
+		<div class={style.home}>
+			<Header />
+			<Stack horizontal tokens={stackTokens} styles={stackStyles}>
+				<Stack {...columnProps}>
+					<TextField label="Nama" />
+					<TextField label="No. Telpon" />
+					<TextField label="Aalamat" />
+					<TextField label="Ukuran" />
+				</Stack>
+				<Stack {...columnProps}>
+					<SearchBox placeholder=" cari disini ..." underlined={true} labelText="Nama"/>
+					<DetailsList
+						items={items}
+						columns={columns}
+						selectionMode={SelectionMode.none}
+						onRenderDetailsHeader={onRenderDetailsHeader}
+					/>
+				</Stack>
+			</Stack>
+		</div>
+	);
+}
 
 export default Home;
