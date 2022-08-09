@@ -3,22 +3,41 @@ import style from './style.css';
 import Header from '../../components/header'
 import { TextField } from '@fluentui/react/lib/TextField';
 import { Stack, IStackProps, IStackStyles } from '@fluentui/react/lib/Stack';
-import { DetailsList, SelectionMode, DetailsHeader,  DetailsListLayoutMode, IDetailsHeaderProps, buildColumns, IColumn } from '@fluentui/react/lib/DetailsList';
+import { 
+	DetailsList, 
+	SelectionMode, 
+	DetailsHeader,  
+	DetailsListLayoutMode, 
+	IDetailsHeaderProps, 
+	IColumn 
+} from '@fluentui/react/lib/DetailsList';
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
-import { IRawStyle, IStyle } from '@fluentui/react';
+import { PrimaryButton } from '@fluentui/react/lib/Button';
 
 const stackTokens = { childrenGap: 50 };
-const iconProps = { iconName: 'Calendar' };
 const stackStyles: Partial<IStackStyles> = { root: { width: "100%" } };
 const columnProps: Partial<IStackProps> = {
   tokens: { childrenGap: 15 },
   styles: { root: { width: "100%" } },
 }
 
-const headerStyle = { 
-	root: {paddingTop: 0}
+const headerStyle= { 
+	root: { paddingTop: 0 }
 }
 
+const searchBoxStyle = { 
+	root: { width: "40%" }
+}
+
+const buttonStyle = {
+	root: { width: "30%" }
+}
+
+const addIcon = { iconName: "Add" }
+
+const textFieldStyle = {
+	root: { width: "80%", marginTop: 20 }
+}
 
 const Home = () => {
 
@@ -98,13 +117,22 @@ const Home = () => {
 			<Header />
 			<Stack horizontal tokens={stackTokens} styles={stackStyles}>
 				<Stack {...columnProps}>
-					<TextField label="Nama" />
-					<TextField label="No. Telpon" />
-					<TextField label="Aalamat" />
-					<TextField label="Ukuran" />
+					<TextField label="Nama" styles={textFieldStyle}/>
+					<TextField label="No. Telpon" styles={textFieldStyle} />
+					<TextField label="Aalamat" styles={textFieldStyle} />
+					<TextField label="Ukuran" styles={textFieldStyle} />
+					<PrimaryButton 
+						text='Tambah'
+						styles={buttonStyle}
+						iconProps={addIcon}
+					/>
 				</Stack>
 				<Stack {...columnProps}>
-					<SearchBox placeholder=" cari disini ..." underlined={true} labelText="Nama"/>
+					<SearchBox 
+						placeholder=" cari disini ..." 
+						underlined={true} labelText="Nama"
+						styles={searchBoxStyle}
+					/>
 					<DetailsList
 						items={items}
 						columns={columns}
