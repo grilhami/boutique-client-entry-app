@@ -3,7 +3,7 @@ import style from './style.css';
 import Header from '../../components/header'
 import { TextField } from '@fluentui/react/lib/TextField';
 import { Stack, IStackProps, IStackStyles } from '@fluentui/react/lib/Stack';
-import { DetailsList, SelectionMode, DetailsHeader, IDetailsHeaderStyles, IDetailsHeaderBaseProps, DetailsListLayoutMode, IDetailsHeaderProps } from '@fluentui/react/lib/DetailsList';
+import { DetailsList, SelectionMode, DetailsHeader,  DetailsListLayoutMode, IDetailsHeaderProps, buildColumns, IColumn } from '@fluentui/react/lib/DetailsList';
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
 import { IRawStyle, IStyle } from '@fluentui/react';
 
@@ -79,13 +79,13 @@ const Home = () => {
 		},
 	]
 
-	const columns = [
-		{ key: 'column1', name: 'Nama', fieldName: 'name', minWidth: 100, maxWidth: 200, isResizable: true },
-		{ key: 'column2', name: 'Tanggal Aktif', fieldName: 'createdAt', minWidth: 100, maxWidth: 200, isResizable: true },
-		{ key: 'column3', name: 'Alamat', fieldName: 'address', minWidth: 100, maxWidth: 200, isResizable: true },
-		{ key: 'column4', name: 'No. Telp', fieldName: 'phoneNum', minWidth: 100, maxWidth: 200, isResizable: true },
-		{ key: 'column5', name: 'Ukuran', fieldName: 'measurement', minWidth: 100, maxWidth: 200, isResizable: true },
-		{ key: 'column6', name: 'Kode', fieldName: 'code', minWidth: 100, maxWidth: 200, isResizable: true },
+	const columns: IColumn[] = [
+		{ key: 'column1', name: 'Kode', fieldName: 'code', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column2', name: 'Nama', fieldName: 'name', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column3', name: 'Ukuran', fieldName: 'measurement', minWidth: 100, maxWidth: 200, isResizable: true, isMultiline: true },
+		{ key: 'column4', name: 'Tanggal Aktif', fieldName: 'createdAt', minWidth: 100, maxWidth: 200, isResizable: true },
+		{ key: 'column5', name: 'Alamat', fieldName: 'address', minWidth: 100, maxWidth: 200, isResizable: true, isMultiline: true },
+		{ key: 'column6', name: 'No. Telp', fieldName: 'phoneNum', minWidth: 100, maxWidth: 200, isResizable: true },
 	  ];
 
 	const onRenderDetailsHeader = (detailsHeaderProps: IDetailsHeaderProps): h.JSX.Element => {
@@ -110,6 +110,7 @@ const Home = () => {
 						columns={columns}
 						selectionMode={SelectionMode.none}
 						onRenderDetailsHeader={onRenderDetailsHeader}
+						layoutMode={DetailsListLayoutMode.justified}
 					/>
 				</Stack>
 			</Stack>
