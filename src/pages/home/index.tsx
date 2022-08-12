@@ -1,7 +1,6 @@
-import React from "react";
 import Header from "../../components/header"
+import Form from "../../components/form"
 import './style.css';
-import { TextField } from '@fluentui/react/lib/TextField';
 import { Stack, IStackProps, IStackStyles } from '@fluentui/react/lib/Stack';
 import { 
 	DetailsList, 
@@ -12,7 +11,6 @@ import {
 	IColumn 
 } from '@fluentui/react/lib/DetailsList';
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
-import { PrimaryButton } from '@fluentui/react/lib/Button';
 
 const stackTokens = { childrenGap: 50 };
 const stackStyles: Partial<IStackStyles> = { root: { width: "100%" } };
@@ -28,17 +26,6 @@ const headerStyle= {
 const searchBoxStyle = { 
 	root: { width: "40%" }
 }
-
-const buttonStyle = {
-	root: { width: "30%" }
-}
-
-const addIcon = { iconName: "Add" }
-
-const textFieldStyle = {
-	root: { width: "80%", marginTop: 20 }
-}
-
 const Home = () => {
 
     const items = [
@@ -116,17 +103,9 @@ const Home = () => {
         <div className="home">
             <Header />
 			<Stack horizontal tokens={stackTokens} styles={stackStyles}>
-				<Stack {...columnProps}>
-					<TextField label="Nama" styles={textFieldStyle}/>
-					<TextField label="No. Telpon" styles={textFieldStyle} />
-					<TextField label="Aalamat" styles={textFieldStyle} />
-					<TextField label="Ukuran" styles={textFieldStyle} />
-					<PrimaryButton 
-						text='Tambah'
-						styles={buttonStyle}
-						iconProps={addIcon}
-					/>
-				</Stack>
+			<Stack {...columnProps}>
+				<Form />
+			</Stack>
 				<Stack {...columnProps}>
 					<SearchBox 
 						placeholder=" cari disini ..." 
