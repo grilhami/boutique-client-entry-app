@@ -1,6 +1,6 @@
 import React from 'react';
 import stackLogo from "../../assets/stack-logos.png"
-import style from './style.css';
+import './style.css';
 
 
 const Header = () => (
