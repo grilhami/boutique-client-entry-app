@@ -1,3 +1,4 @@
+import { FeedResponse } from '@azure/cosmos';
 import { 
 	DetailsList, 
 	SelectionMode, 
@@ -8,7 +9,7 @@ import {
 } from '@fluentui/react/lib/DetailsList';
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
 import { useEffect, useState } from 'react';
-import { getTopFiveClients } from '../helper/db/boutique/clients';
+import { getTopFiveClients,IClient } from '../helper/db/boutique/clients';
 
 const headerStyle= { 
 	root: { paddingTop: 0 }
@@ -19,64 +20,8 @@ const searchBoxStyle = {
 }
 
 const Table = () => {
-    // const items = [
-	// 	{
-	// 		key: 1,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum dolor sit amet  consectetur adipiscing elit.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38 / 33; 55; 98",
-	// 		code: 19909
-	// 	},
-	// 	{
-	// 		key: 2,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97;",
-	// 		code: 19909
-	// 	},
-	// 	{
-	// 		key: 3,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97;",
-	// 		code: 19909
-	// 	},
-	// 	{
-	// 		key: 4,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97;",
-	// 		code: 19909
-	// 	},
-	// 	{
-	// 		key: 5,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum dolor sit amet  consectetur.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38",
-	// 		code: 19909
-	// 	},
-	// 	{
-	// 		key: 6,
-	// 		name: "Jeniffer Chen",
-	// 		createdAt: "01/01/2020",
-	// 		address: "Lorem ipsum dolor sit amet  consectetur adipiscing elit.",
-	// 		phoneNum: 123123123,
-	// 		measurement: "88,5 ; 76 ; 90 ; 97; 17 - 18 / 23; 38 -38 / 33; 55; 98",
-	// 		code: 19909
-	// 	},
-	// ]
 
-	const [items, setItems] = useState([]);
+	const [items, setItems] = useState<IClient[]>([]);
 
 	const columns: IColumn[] = [
 		{ key: 'column1', name: 'Kode', fieldName: 'id', minWidth: 100, maxWidth: 200, isResizable: true },
@@ -93,11 +38,9 @@ const Table = () => {
 	}
 
 	useEffect( () => {
-		if (items.length === 0) {
-			getTopFiveClients().then((results:any) => {
-				setItems(results);
-			});
-		}
+		getTopFiveClients().then( result => {
+			setItems(result);
+		});
 	}, [])
 	
 
