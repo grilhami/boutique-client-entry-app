@@ -4,8 +4,8 @@ interface Config {
 }
 
 const cosmosConfig: Config = {
-    endpoint: process.env.ENDPOINT as string,
-    key: process.env.KEY as string,
+    endpoint: process.env.REACT_APP_COSMOSDB_ENDPOINT as string,
+    key: process.env.REACT_APP_COSMOSDB_KEY as string,
 }
 
 export default cosmosConfig;
