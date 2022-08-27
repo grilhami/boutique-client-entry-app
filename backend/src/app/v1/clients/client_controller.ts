@@ -32,3 +32,5 @@ class ClientController implements IController {
         }
     }
 }
+
+export default ClientController;
