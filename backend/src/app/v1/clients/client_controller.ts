@@ -12,7 +12,7 @@ class ClientController implements IController {
     }
 
     initRoute = () => {
-        this.router.post(`${this.path}`, this.getClients);
+        this.router.get(`${this.path}`, this.getClients);
     }
 
     getClients = async (req: Request, res: Response) => {
