@@ -1,3 +1,4 @@
+import { IClient } from "../../../shared/interfaces/client";
 import ClientRepository from "./client_repository";
 
 interface IClientService {
@@ -8,7 +9,11 @@ class ClientService implements IClientService {
     repository = new ClientRepository();
 
     findTopFiveMostRecent = async () => {
-        return await this.repository.findClients();
+        return await this.repository.find();
+    }
+
+    createClient = async (data: IClient) => {
+        return await this.repository.create(data);
     }
 }
 
