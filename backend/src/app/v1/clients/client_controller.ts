@@ -22,7 +22,7 @@ class ClientController implements IController {
                 status: "success",
                 data
             }
-            return res.status(201).json(response)
+            return res.status(200).json(response)
         } catch (e) {
             const response: IErrorResponse = {
                 status: "error",

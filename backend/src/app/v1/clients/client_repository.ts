@@ -1,5 +1,6 @@
 import cosmos from "@azure/cosmos";
 import { cosmosClient } from "../../../database/cosmos";
+import { mapClients } from "../../../shared/functions/client";
 import { IClient } from "../../../shared/interfaces/client";
 
 interface IClientRepository {
@@ -22,7 +23,8 @@ class ClientRepository implements IClientRepository {
             await this.container.items.query(query).fetchAll()
         ).resources;
 
-        return data;
+        const clients: IClient[] = mapClients(data);
+        return clients;
     }
 }
 
