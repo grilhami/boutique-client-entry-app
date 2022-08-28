@@ -46,8 +46,7 @@ class ClientRepository implements IClientRepository {
         ).id as string;
 
         const id: string = generateNextId(lastClientId);
-
-        const client: IClient = {
+        const newClient: IClient = {
             id,
             name: data.name,
             size: data.size,
@@ -55,8 +54,13 @@ class ClientRepository implements IClientRepository {
             phone: data.phone
         }
 
-        const createClient = await this.container.items.create(client);
-        return createClient.resource;
+        const createClient = await this.container.items.create(newClient);
+        if (!createClient) {
+            throw new Error("Error creating client");
+        }
+
+        const result: IClient = mapClient(createClient.resource as IClient);
+        return result;
 
     }
 }
