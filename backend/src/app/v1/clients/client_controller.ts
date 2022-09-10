@@ -13,6 +13,7 @@ class ClientController implements IController {
 
     initRoute = () => {
         this.router.get(`${this.path}`, this.getClients);
+        this.router.post(`${this.path}`, this.createClient);
     }
 
     getClients = async (req: Request, res: Response) => {
@@ -22,8 +23,26 @@ class ClientController implements IController {
                 status: "success",
                 data
             }
-            return res.status(201).json(response)
+            return res.status(200).json(response)
         } catch (e) {
+            const response: IErrorResponse = {
+                status: "error",
+                message: "Internal Server"
+            }
+            return res.status(500).json(response)
+        }
+    }
+
+    createClient = async (req: Request, res: Response) => {
+        try {
+            const data = await this.service.createClient(req.body);
+            const response: ISuccessResponse = {
+                status: "success",
+                data
+            }
+            return res.status(200).json(response)
+        } catch (e) {
+            console.log(e)
             const response: IErrorResponse = {
                 status: "error",
                 message: "Internal Server"
