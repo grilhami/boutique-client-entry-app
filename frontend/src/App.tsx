@@ -1,4 +1,3 @@
-import { PrimaryButton } from "@fluentui/react"
 import Home from "./pages/home"
 
 function App() {
