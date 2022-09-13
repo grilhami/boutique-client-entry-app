@@ -9,7 +9,7 @@ const Header = () => (
 				{/* Need to change using <p> */}
 				<h1>Mom's Boutique</h1>
 				<div><p>powered by</p></div>
-				<div><img src={stackLogo}/></div>
+				<div><img alt="" src={stackLogo}/></div>
 			</div>
 			<hr className="seperator"/>
 	</div>
