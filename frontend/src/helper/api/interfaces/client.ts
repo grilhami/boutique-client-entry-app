@@ -13,3 +13,7 @@ export interface IClientPost {
     address: string;
     phone: string;
 }
+
+export interface IClientItem extends IClientGet {
+    key: string;
+}
