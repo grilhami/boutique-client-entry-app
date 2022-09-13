@@ -3,7 +3,7 @@ import { IClientGet, IClientPost } from "./interfaces";
 
 export const getClients = async () => {
   const api = getAxiosInstance()
-  const response = await api.get("api/v1/clients");
+  const response = await api.get("/clients");
   const data: IClientGet[] = response.data.data;
   return data;
 };
