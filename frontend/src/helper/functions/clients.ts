@@ -1,8 +1,8 @@
-import { IClient } from "../db/boutique/clients";
+import { IClientGet } from "../api/interfaces";
 
-export const mapClients = (clients: IClient[]): IClient[] => {
+export const mapClients = (clients: IClientGet[]): IClientGet[] => {
     clients.forEach((
-        client:IClient
+        client:IClientGet
         ) => {
             const clientTs: string = client._ts as string;
 
